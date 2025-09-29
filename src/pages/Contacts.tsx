@@ -1,38 +1,120 @@
-import { Search, Filter, Plus, Mail, Phone, Briefcase, GraduationCap, Heart } from "lucide-react";
+import { Search, Filter, Plus, Mail, Phone, Building2, CheckCircle, XCircle, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
 const Contacts = () => {
   const contacts = [
-    { name: "Sarah Chen", role: "Product Manager", company: "TechCorp", category: "Professional", interactions: 15, lastContact: "2 days ago" },
-    { name: "Michael Rodriguez", role: "Software Engineer", company: "StartupXYZ", category: "Professional", interactions: 8, lastContact: "1 week ago" },
-    { name: "Emma Thompson", role: "UX Designer", company: "DesignHub", category: "Professional", interactions: 12, lastContact: "3 days ago" },
-    { name: "James Wilson", role: "Data Scientist", company: "AI Labs", category: "Professional", interactions: 6, lastContact: "5 days ago" },
-    { name: "Lisa Park", role: "Marketing Director", company: "BrandCo", category: "Professional", interactions: 10, lastContact: "4 days ago" },
-    { name: "David Kim", role: "PhD Candidate", company: "MIT", category: "Academic", interactions: 20, lastContact: "1 day ago" },
-    { name: "Alex Johnson", role: "Entrepreneur", company: "Self-employed", category: "Personal", interactions: 25, lastContact: "Today" },
-    { name: "Rachel Green", role: "Professor", company: "Emory University", category: "Academic", interactions: 18, lastContact: "3 days ago" },
+    { 
+      name: "Sarah Chen", 
+      role: "Product Manager", 
+      company: "Google", 
+      email: "sarah.chen@google.com",
+      phone: "(415) 555-0123",
+      meetingCount: 3,
+      lastContact: "2024-01-15",
+      nextFollowUp: "2024-02-01",
+      thankYouSent: true,
+      notes: "Discussed AI product strategy and potential collaboration opportunities."
+    },
+    { 
+      name: "Michael Rodriguez", 
+      role: "Software Engineer", 
+      company: "Google", 
+      email: "m.rodriguez@google.com",
+      phone: "(650) 555-0187",
+      meetingCount: 2,
+      lastContact: "2024-01-20",
+      nextFollowUp: "2024-02-05",
+      thankYouSent: true,
+      notes: "Talked about ML infrastructure and career advice for tech roles."
+    },
+    { 
+      name: "Emma Thompson", 
+      role: "Senior UX Designer", 
+      company: "Amazon", 
+      email: "ethompson@amazon.com",
+      phone: "(206) 555-0142",
+      meetingCount: 4,
+      lastContact: "2024-01-18",
+      nextFollowUp: "2024-02-03",
+      thankYouSent: false,
+      notes: "Portfolio review and discussion about design systems at scale."
+    },
+    { 
+      name: "James Wilson", 
+      role: "Data Scientist", 
+      company: "Amazon", 
+      email: "jwilson@amazon.com",
+      phone: "(206) 555-0198",
+      meetingCount: 2,
+      lastContact: "2024-01-12",
+      nextFollowUp: "2024-01-30",
+      thankYouSent: true,
+      notes: "Explored data science career paths and AWS ML tools."
+    },
+    { 
+      name: "Lisa Park", 
+      role: "Product Marketing Manager", 
+      company: "Microsoft", 
+      email: "lisa.park@microsoft.com",
+      phone: "(425) 555-0176",
+      meetingCount: 3,
+      lastContact: "2024-01-16",
+      nextFollowUp: "2024-02-02",
+      thankYouSent: true,
+      notes: "Discussed marketing strategies for technical products and internship opportunities."
+    },
+    { 
+      name: "David Kim", 
+      role: "Research Scientist", 
+      company: "Meta", 
+      email: "dkim@meta.com",
+      phone: "(650) 555-0134",
+      meetingCount: 5,
+      lastContact: "2024-01-22",
+      nextFollowUp: "2024-02-08",
+      thankYouSent: true,
+      notes: "In-depth conversation about AI research and PhD program recommendations."
+    },
+    { 
+      name: "Alex Johnson", 
+      role: "Engineering Manager", 
+      company: "Apple", 
+      email: "ajohnson@apple.com",
+      phone: "(408) 555-0165",
+      meetingCount: 2,
+      lastContact: "2024-01-19",
+      nextFollowUp: "2024-02-04",
+      thankYouSent: false,
+      notes: "Talked about engineering leadership and Apple's design philosophy."
+    },
+    { 
+      name: "Rachel Green", 
+      role: "Cloud Architect", 
+      company: "Microsoft", 
+      email: "rgreen@microsoft.com",
+      phone: "(425) 555-0189",
+      meetingCount: 3,
+      lastContact: "2024-01-17",
+      nextFollowUp: "2024-02-06",
+      thankYouSent: true,
+      notes: "Azure architecture discussion and cloud computing career insights."
+    },
   ];
 
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case "Professional": return <Briefcase className="h-4 w-4" />;
-      case "Academic": return <GraduationCap className="h-4 w-4" />;
-      case "Personal": return <Heart className="h-4 w-4" />;
-      default: return null;
+  // Group contacts by company
+  const contactsByCompany = contacts.reduce((acc, contact) => {
+    if (!acc[contact.company]) {
+      acc[contact.company] = [];
     }
-  };
+    acc[contact.company].push(contact);
+    return acc;
+  }, {} as Record<string, typeof contacts>);
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "Professional": return "bg-primary/20 text-primary border-primary/30";
-      case "Academic": return "bg-accent/20 text-accent border-accent/30";
-      case "Personal": return "bg-destructive/20 text-destructive border-destructive/30";
-      default: return "bg-muted text-muted-foreground";
-    }
-  };
+  const companies = Object.keys(contactsByCompany).sort();
 
   return (
     <div className="p-8 space-y-8 animate-fade-in">
@@ -62,62 +144,120 @@ const Contacts = () => {
         </Button>
       </div>
 
-      {/* Category Filter Badges */}
-      <div className="flex gap-2">
+      {/* Company Filter Badges */}
+      <div className="flex gap-2 flex-wrap">
         <Badge variant="outline" className="border-primary/30 bg-primary/10 text-primary cursor-pointer hover:bg-primary/20">
-          All Contacts (42)
+          All Companies ({contacts.length})
         </Badge>
-        <Badge variant="outline" className="border-border/50 cursor-pointer hover:bg-muted/50">
-          Professional (28)
-        </Badge>
-        <Badge variant="outline" className="border-border/50 cursor-pointer hover:bg-muted/50">
-          Academic (10)
-        </Badge>
-        <Badge variant="outline" className="border-border/50 cursor-pointer hover:bg-muted/50">
-          Personal (4)
-        </Badge>
+        {companies.map(company => (
+          <Badge key={company} variant="outline" className="border-border cursor-pointer hover:bg-muted">
+            {company} ({contactsByCompany[company].length})
+          </Badge>
+        ))}
       </div>
 
-      {/* Contacts Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {contacts.map((contact, index) => (
-          <Card key={index} className="glass-card border-border/50 hover:border-primary/50 transition-all cursor-pointer group">
-            <CardContent className="p-6">
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-lg font-bold">
-                  {contact.name.split(' ').map(n => n[0]).join('')}
-                </div>
-                <Badge variant="outline" className={`${getCategoryColor(contact.category)} text-xs flex items-center gap-1`}>
-                  {getCategoryIcon(contact.category)}
-                  {contact.category}
-                </Badge>
-              </div>
-              
-              <h3 className="font-semibold text-lg mb-1 group-hover:text-primary transition-colors">
-                {contact.name}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-1">{contact.role}</p>
-              <p className="text-xs text-muted-foreground/70 mb-4">{contact.company}</p>
+      {/* Contacts Grouped by Company */}
+      <div className="space-y-8">
+        {companies.map(company => (
+          <div key={company} className="space-y-4">
+            <div className="flex items-center gap-3">
+              <Building2 className="h-6 w-6 text-primary" />
+              <h2 className="text-2xl font-bold text-foreground">{company}</h2>
+              <Badge variant="secondary" className="ml-2">
+                {contactsByCompany[company].length} {contactsByCompany[company].length === 1 ? 'contact' : 'contacts'}
+              </Badge>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {contactsByCompany[company].map((contact, index) => (
+                <Card key={index} className="glass-card border-border hover:border-primary/50 transition-all cursor-pointer group">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center text-lg font-bold text-primary-foreground">
+                          {contact.name.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <div>
+                          <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                            {contact.name}
+                          </CardTitle>
+                          <p className="text-sm text-muted-foreground">{contact.role}</p>
+                        </div>
+                      </div>
+                      {contact.thankYouSent ? (
+                        <CheckCircle className="h-5 w-5 text-primary" />
+                      ) : (
+                        <XCircle className="h-5 w-5 text-muted-foreground" />
+                      )}
+                    </div>
+                  </CardHeader>
+                  
+                  <CardContent className="space-y-4">
+                    {/* Contact Info */}
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2 text-sm">
+                        <Mail className="h-4 w-4 text-muted-foreground" />
+                        <span className="text-foreground">{contact.email}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <Phone className="h-4 w-4 text-muted-foreground" />
+                        <span className="text-foreground">{contact.phone}</span>
+                      </div>
+                    </div>
 
-              <div className="flex items-center justify-between text-xs text-muted-foreground border-t border-border/50 pt-4">
-                <div className="flex items-center gap-1">
-                  <Mail className="h-3 w-3" />
-                  {contact.interactions} interactions
-                </div>
-                <div className="text-accent">{contact.lastContact}</div>
-              </div>
+                    <Separator />
 
-              <div className="flex gap-2 mt-4">
-                <Button size="sm" variant="outline" className="flex-1 border-border/50 hover:bg-primary/10 hover:text-primary">
-                  <Mail className="h-3 w-3 mr-1" />
-                  Message
-                </Button>
-                <Button size="sm" variant="outline" className="border-border/50 hover:bg-accent/10 hover:text-accent">
-                  <Phone className="h-3 w-3" />
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+                    {/* Meeting Stats */}
+                    <div className="flex items-center justify-between text-sm">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4 text-muted-foreground" />
+                        <span className="text-muted-foreground">Meetings:</span>
+                        <Badge variant="secondary" className="text-xs">{contact.meetingCount}</Badge>
+                      </div>
+                      <div className="text-xs text-muted-foreground">
+                        Last: {new Date(contact.lastContact).toLocaleDateString()}
+                      </div>
+                    </div>
+
+                    {/* Next Follow Up */}
+                    <div className="flex items-center justify-between p-2 bg-primary/5 rounded-md">
+                      <span className="text-sm font-medium text-foreground">Next Follow-up:</span>
+                      <span className="text-sm text-primary font-semibold">
+                        {new Date(contact.nextFollowUp).toLocaleDateString()}
+                      </span>
+                    </div>
+
+                    {/* Conversation Notes */}
+                    <div className="space-y-1">
+                      <span className="text-xs font-medium text-muted-foreground">Notes:</span>
+                      <p className="text-sm text-foreground leading-relaxed">{contact.notes}</p>
+                    </div>
+
+                    <Separator />
+
+                    {/* Actions */}
+                    <div className="flex gap-2">
+                      <Button size="sm" variant="default" className="flex-1">
+                        <Mail className="h-3 w-3 mr-2" />
+                        Email
+                      </Button>
+                      <Button size="sm" variant="outline" className="flex-1">
+                        <Phone className="h-3 w-3 mr-2" />
+                        Call
+                      </Button>
+                    </div>
+
+                    {!contact.thankYouSent && (
+                      <Button size="sm" variant="secondary" className="w-full">
+                        <CheckCircle className="h-3 w-3 mr-2" />
+                        Send Thank You
+                      </Button>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </div>

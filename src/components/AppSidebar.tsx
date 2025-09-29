@@ -1,4 +1,5 @@
 import { Home, Users, Target, Bell, TrendingUp, User } from "lucide-react";
+import rippleLogo from "@/assets/ripple-logo.png";
 import { NavLink } from "react-router-dom";
 import {
   Sidebar,
@@ -24,8 +25,7 @@ export function AppSidebar() {
     <Sidebar className="border-r border-border/50">
       <SidebarContent className="bg-sidebar pt-8">
         <div className="px-6 mb-8">
-          <h1 className="text-3xl font-bold gradient-text">Ripple</h1>
-          <p className="text-xs text-muted-foreground mt-1">Professional Networking</p>
+          <img src={rippleLogo} alt="Ripple - Waves of Opportunity" className="w-40 mx-auto" />
         </div>
 
         <SidebarGroup>

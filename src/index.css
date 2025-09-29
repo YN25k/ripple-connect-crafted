@@ -8,57 +8,57 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Ripple Dark Theme - Purple/Cyan Gradients */
-    --background: 240 10% 6%;
-    --foreground: 210 40% 98%;
+    /* Ripple Clean Theme - Blue/White Professional */
+    --background: 0 0% 100%;
+    --foreground: 217 33% 17%;
 
-    --card: 240 8% 10%;
-    --card-foreground: 210 40% 98%;
-    --card-glass: 240 8% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 217 33% 17%;
+    --card-glass: 0 0% 98%;
 
-    --popover: 240 10% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 217 33% 17%;
 
-    --primary: 270 80% 65%;
-    --primary-foreground: 210 40% 98%;
-    --primary-glow: 270 70% 75%;
+    --primary: 217 91% 35%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 217 91% 45%;
 
-    --secondary: 240 8% 15%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 217 20% 95%;
+    --secondary-foreground: 217 33% 17%;
 
-    --muted: 240 8% 20%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 217 20% 96%;
+    --muted-foreground: 217 15% 45%;
 
-    --accent: 190 85% 60%;
-    --accent-foreground: 240 10% 6%;
-    --accent-glow: 190 75% 70%;
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 100%;
+    --accent-glow: 38 92% 60%;
 
     --destructive: 0 72% 55%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 240 8% 18%;
-    --input: 240 8% 15%;
-    --ring: 270 80% 65%;
+    --border: 217 20% 90%;
+    --input: 217 20% 95%;
+    --ring: 217 91% 35%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 240 10% 8%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 270 80% 65%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 240 8% 15%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 240 8% 18%;
-    --sidebar-ring: 270 80% 65%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 217 33% 17%;
+    --sidebar-primary: 217 91% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 20% 95%;
+    --sidebar-accent-foreground: 217 33% 17%;
+    --sidebar-border: 217 20% 90%;
+    --sidebar-ring: 217 91% 35%;
 
     /* Custom gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(270 80% 65%), hsl(190 85% 60%));
-    --gradient-card: linear-gradient(135deg, hsl(240 8% 12% / 0.6), hsl(240 8% 10% / 0.4));
-    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(270 80% 65% / 0.15), transparent 50%);
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 35%), hsl(217 91% 50%));
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100% / 0.8), hsl(0 0% 98% / 0.6));
+    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(217 91% 35% / 0.1), transparent 50%);
     
     /* Shadows */
-    --shadow-glass: 0 8px 32px 0 rgba(139, 92, 246, 0.1);
-    --shadow-glow: 0 0 40px rgba(139, 92, 246, 0.3);
+    --shadow-glass: 0 8px 32px 0 rgba(13, 71, 161, 0.08);
+    --shadow-glow: 0 0 40px rgba(13, 71, 161, 0.15);
   }
 }
 
