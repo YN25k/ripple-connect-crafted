@@ -36,6 +36,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const fetchUser = async () => {
     try {
+      // Handle mock token
+      const token = localStorage.getItem('access_token');
+      if (token === 'mock_token_for_ripple') {
+        setUser({ userId: 1, email: 'ripple@gmail.com', name: 'Ripple User' });
+        setIsLoading(false);
+        return;
+      }
+
       const userData = await authApi.getMe();
       setUser(userData);
     } catch (error) {
@@ -48,6 +56,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (email: string, password: string) => {
     try {
+      // Bypass for testing
+      if (email === 'ripple@gmail.com' && password === '1234567890') {
+        const mockToken = 'mock_token_for_ripple';
+        localStorage.setItem('access_token', mockToken);
+        setUser({ userId: 1, email: 'ripple@gmail.com', name: 'Ripple User' });
+        toast({
+          title: "Login successful",
+          description: "Welcome back!",
+        });
+        navigate('/profile');
+        return;
+      }
+
       const data = await authApi.login(email, password);
       localStorage.setItem('access_token', data.access_token);
       await fetchUser();
