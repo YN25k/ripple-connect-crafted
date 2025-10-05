@@ -29,12 +29,12 @@ const Landing = () => {
         </p>
 
         <div className="flex gap-4 justify-center">
-          <Link to="/dashboard">
+          <Link to="/login">
             <Button 
               size="lg" 
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg rounded-xl shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/60 transition-all"
             >
-              Explore Demo
+              Get Started
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
